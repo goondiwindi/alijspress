@@ -43,7 +43,6 @@ const openCart = (event) => {
 };
 
 const closeCart = (event) => {
-  event.preventDefault();
   const target = event.target;
   console.log(target);
   
