@@ -32,8 +32,14 @@ goodsWrapper.append(createCartGoods(1, 'Дартс', 3033,'img/temp/archer.jpg')
 goodsWrapper.append(createCartGoods(2, 'Фламинго', 2000, 'img/temp/flamingo.jpg'));
 goodsWrapper.append(createCartGoods(3, 'Носки', 230, 'img/temp/socks.jpg'));
 
-const openCart = () => {
+const openCart = (event) => {
+  event.preventDefault();
   cart.style.display = 'flex';
+  document.addEventListener("keydown", (event) => {
+    if (event.keyCode === 27) {
+      cart.style.display = '';
+    }
+  });
 };
 
 const closeCart = (event) => {
@@ -48,8 +54,3 @@ const closeCart = (event) => {
 
 cartBtn.addEventListener('click', openCart);
 cart.addEventListener('click', closeCart);
-document.addEventListener("keydown", (event) => {
-  if (event.keyCode === 27) {
-    cart.style.display = '';
-  }
-});
