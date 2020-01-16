@@ -35,19 +35,18 @@ goodsWrapper.append(createCartGoods(3, 'Носки', 230, 'img/temp/socks.jpg'))
 const openCart = (event) => {
   event.preventDefault();
   cart.style.display = 'flex';
-  document.addEventListener("keydown", (event) => {
-    if (event.keyCode === 27) {
-      cart.style.display = '';
-    }
-  });
+  document.addEventListener("keydown", closeCart);
 };
 
 const closeCart = (event) => {
   const target = event.target;
   console.log(target);
   
-  if (target === cart || target.classList.contains('cart-close')) {
+  if (target === cart ||
+    target.classList.contains('cart-close') ||
+    event.keyCode === 27) {
     cart.style.display = '';
+    document.removeEventListener('keydown', closeCart)
   }
 };
 
