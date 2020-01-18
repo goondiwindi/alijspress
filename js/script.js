@@ -7,7 +7,13 @@ const wishlistBtn = document.querySelector('#wishlist');
 const goodsWrapper = document.querySelector('.goods-wrapper');
 const category = document.querySelector('.category');
 
+const loading = () => {
+  goodsWrapper.innerHTML = `<div id="spinner"><div class="spinner-loading"><div><div><div></div>
+  </div><div><div></div></div><div><div></div></div><div><div></div></div></div></div></div>`
+};
+
 const getGoods = (handler, filter) => {
+  loading();
   fetch('db/db.json')
     .then(res => res.json())
     .then(filter)
@@ -56,6 +62,7 @@ const closeCart = event => {
 };
 
 const renderCard = items => {
+  goodsWrapper.innerHTML = '';
   items.forEach(({ id, title, price, imgMin }) => {
     goodsWrapper.append(createCardGoods(id, title, price, imgMin));
   });
